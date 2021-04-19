@@ -1,0 +1,58 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- ///////////////////////////// -->
+    <!-- Base Light Application Theme. -->
+    <!-- ///////////////////////////// -->
+    <style name="LightTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/light_text_color</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="drawableTint">?attr/colorOnPrimary</item>
+        <item name="imageButtonStyle">@style/imageButtonLight</item>
+        <item name="android:textViewStyle">@style/textViewLight</item>
+        <item name="android:popupWindowStyle">@style/PopupMenuLight</item>
+        <item name="toolbarStyle">@style/toolbarLight</item>
+        <item name="android:windowBackground">@color/light_background</item>
+        <item name="cardViewStyle">@style/CardViewLight</item>
+
+    </style>
+    <!-- Light Theme Style !-->
+    <style name="imageButtonLight" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:tint">?attr/colorOnPrimary</item>
+    </style>
+    <style name="textViewLight" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+    <style name="PopupMenuLight">
+        <item name="android:popupBackground">@color/light_popup</item>
+    </style>
+    <style name="toolbarLight">
+        <item name="android:background">@color/light_toolbar</item>
+    </style>
+    <style name="CardViewLight">
+        <item name="cardElevation">3dp</item>
+        <item name="cardBackgroundColor">@color/light_popup</item>
+    </style>
+    <style name="FixedNormalButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Non-Theme Styles !-->
+    <!-- Welcome Screen Style !-->
+    <style name="WelcomeBodyText">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">@font/lekton_bold</item>
+    </style>
+    <style name="WelcomeCheckBox">
+        <item name="android:buttonTint">@color/checkbox_light</item>
+        <item name="android:textColor">@color/dark_text_color</item>
+    </style>
+</resources>

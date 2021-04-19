@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/dialogNewNoteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="24sp"
+                android:text="@string/dialog_note_name_title" />
+            <TextView
+                android:id="@+id/dialogNewNoteText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                android:text="@string/dialog_note_name_text" />
+            <EditText
+                android:id="@+id/dialogNewNoteName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="@string/name_text"
+                android:inputType="text"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:singleLine="true"
+                android:textColorHint="@android:color/darker_gray" />
+            <TextView
+                android:id="@+id/dialogColorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="18sp"
+                android:text="@string/dialog_note_color" />
+            <!-- Color List Buttons !-->
+            <!-- Column 1 !-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="bottom">
+                <ImageButton
+                    android:id="@+id/dialogColorWhiteButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/cardColorWhite"
+                    android:tint="@color/black"
+                    android:src="@drawable/ic_baseline_check_24" />
+                <ImageButton
+                    android:id="@+id/dialogColorRedButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorRed" />
+                <ImageButton
+                    android:id="@+id/dialogColorPinkButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorPink" />
+                <ImageButton
+                    android:id="@+id/dialogColorPurpleButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorPurple" />
+                <ImageButton
+                    android:id="@+id/dialogColorDeepPurpleButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorDeepPurple" />
+            </LinearLayout>
+            <!-- Column 2 !-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
+                <ImageButton
+                    android:id="@+id/dialogColorIndigoButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorIndigo"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorBlueButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorBlue"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorLightBlueButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorLightBlue"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorCyanButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorCyan"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorTealButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorTeal"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!-- Column 3 !-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
+                <ImageButton
+                    android:id="@+id/dialogColorGreenButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorGreen"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorLightGreenButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorLightGreen"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorLimeButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/black"
+                    android:background="@color/cardColorLime"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorYellowButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/black"
+                    android:background="@color/cardColorYellow"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorAmberButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/black"
+                    android:background="@color/cardColorAmber"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!-- Column 4 !-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom">
+                <ImageButton
+                    android:id="@+id/dialogColorOrangeButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorOrange"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorDeepOrangeButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorDeepOrange"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorBrownButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorBrown"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorGreyButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorGrey"
+                    android:textSize="14sp" />
+                <ImageButton
+                    android:id="@+id/dialogColorBlueGreyButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:tint="@color/white"
+                    android:background="@color/cardColorBlueGrey"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!-- Dialog Event Buttons !-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <Button
+                    android:id="@+id/dialogNoteCancelButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="@string/cancel_text" />
+                <Button
+                    android:id="@+id/dialogNoteAddButton"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="@string/add_text"
+                    android:textColor="@color/cardColorBlue" />
+            </LinearLayout>
+        </LinearLayout>
+</ScrollView>

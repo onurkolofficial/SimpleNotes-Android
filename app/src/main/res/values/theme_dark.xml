@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- //////////////////////////// -->
+    <!-- Base Dark Application Theme. -->
+    <!-- //////////////////////////// -->
+    <style name="DarkTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/dark_text_color</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/dark_secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="drawableTint">?attr/colorOnPrimary</item>
+        <item name="imageButtonStyle">@style/imageButtonDark</item>
+        <item name="android:textViewStyle">@style/textViewDark</item>
+        <item name="android:popupWindowStyle">@style/PopupMenuDark</item>
+        <item name="toolbarStyle">@style/toolbarDark</item>
+        <item name="android:windowBackground">@color/dark_background</item>
+        <item name="cardViewStyle">@style/CardViewDark</item>
+        <item name="android:textColorSecondaryInverse">@color/gray4</item>
+        <item name="buttonStyle">@style/FixedNormalButton</item>
+
+    </style>
+    <!-- Dark Theme Style !-->
+    <style name="imageButtonDark" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:tint">?attr/colorOnPrimary</item>
+    </style>
+    <style name="textViewDark" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+    <style name="PopupMenuDark" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/dark_popup</item>
+    </style>
+    <style name="toolbarDark">
+        <item name="android:background">@color/dark_toolbar</item>
+    </style>
+    <style name="CardViewDark">
+        <item name="cardElevation">3dp</item>
+        <item name="cardBackgroundColor">@color/dark_popup</item>
+    </style>
+
+</resources>

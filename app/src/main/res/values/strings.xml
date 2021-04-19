@@ -1,0 +1,43 @@
+<resources>
+    <string name="startapp_app_id" translatable="false">209014105</string>
+    <string name="app_name">Simple Notes</string>
+    <string name="settings_text">Settings</string>
+    <string name="settings_category_appearance">Appearance</string>
+    <string name="settings_category_other">Other</string>
+    <string name="settings_theme_text">Select Theme</string>
+    <string name="settings_theme_summary">Change application design.</string>
+    <string name="no_new_note_text">No new note!</string>
+    <string name="no_new_note_summary">Click \'+\' to add new note.</string>
+    <string name="settings_category_general">General</string>
+    <string name="dialog_note_name_title">Create New Note!</string>
+    <string name="dialog_note_name_text">Please enter note name.</string>
+    <string name="dialog_note_color">Select a note color.</string>
+    <string name="name_text">Name</string>
+    <string name="default_note_name">New Note!</string>
+    <string name="add_text">Add</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="yes_text">Yes</string>
+    <string name="no_text">No</string>
+    <string name="sure_delete_note_text">Are you sure delete this note?</string>
+    <string name="theme_light_text">Light Theme</string>
+    <string name="theme_dark_text">Dark Theme</string>
+    <string name="settings_line_numbers_text">Line Numbers</string>
+    <string name="settings_line_numbers_summary">Show line numbers.</string>
+    <string name="about_text">About</string>
+    <string name="settings_about_summary">View application informations.</string>
+    <string name="about_summary">You notes can saving and editing, it is a note application.</string>
+    <string name="about_author">Created by Onur KOL</string>
+    <string name="about_version">Application Version:</string>
+    <string name="about_web_page">Go Web Site</string>
+    <string name="note_saved_text">Note Saved!</string>
+    <string name="exit_application">Exit Application</string>
+    <string name="delete_note_text">Delete Note</string>
+    <string name="add_note_text">Add Note</string>
+    <string name="back_text">Back</string>
+    <string name="save_text">Save</string>
+    <string name="settings_about_version_summary">Show this version changes.</string>
+    <string name="settings_about_version_text">About version.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

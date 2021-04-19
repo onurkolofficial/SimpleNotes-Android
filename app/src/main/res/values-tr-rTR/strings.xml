@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Basit Notlar</string>
+    <string name="settings_text">Ayarlar</string>
+    <string name="settings_category_appearance">Görünüm</string>
+    <string name="settings_category_other">Diğer</string>
+    <string name="settings_theme_text">Tema Seç</string>
+    <string name="settings_theme_summary">Uygulama tasarımını değiştir.</string>
+    <string name="no_new_note_summary">\'+\'ya tıklayarak yeni not ekleyebilirsiniz.</string>
+    <string name="no_new_note_text">Yeni not yok!</string>
+    <string name="settings_category_general">Genel</string>
+    <string name="dialog_note_name_title">Yeni Not Oluştur!</string>
+    <string name="dialog_note_name_text">Lütfen not ismini girin.</string>
+    <string name="dialog_note_color">Bir not rengi seçin.</string>
+    <string name="name_text">İsim</string>
+    <string name="default_note_name">Yeni Not!</string>
+    <string name="add_text">Ekle</string>
+    <string name="cancel_text">İptal</string>
+    <string name="yes_text">Evet</string>
+    <string name="no_text">Hayır</string>
+    <string name="sure_delete_note_text">Bu notu silmek istediğine emin misin?</string>
+    <string name="theme_light_text">Aydınlık Tema</string>
+    <string name="theme_dark_text">Koyu Tema</string>
+    <string name="settings_line_numbers_text">Satır Numaraları</string>
+    <string name="settings_line_numbers_summary">Satır numaralarını göster.</string>
+    <string name="about_text">Hakkında</string>
+    <string name="settings_about_summary">Uygulama bilgilerini gör.</string>
+    <string name="about_summary">Notlarınızı kaydedip düzenleyebileceğiniz bir not uygulamasıdır.</string>
+    <string name="about_author">Yapımcı: Onur KOL</string>
+    <string name="about_version">Uygulama Sürümü:</string>
+    <string name="about_web_page">Web Sitesine Git</string>
+    <string name="note_saved_text">Not Kaydedildi!</string>
+    <string name="exit_application">Uygulamadan Çık</string>
+    <string name="delete_note_text">Notu Sil</string>
+    <string name="add_note_text">Not Ekle</string>
+    <string name="back_text">Geri</string>
+    <string name="save_text">Kaydet</string>
+    <string name="settings_about_version_text">Sürüm hakkında.</string>
+    <string name="settings_about_version_summary">Bu sürümdeki değişiklikleri göster.</string>
+</resources>
