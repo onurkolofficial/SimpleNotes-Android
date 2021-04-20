@@ -91,19 +91,6 @@ public class EditNoteActivity extends AppCompatActivity {
                 String updateNewPreference=prefData.replace(oldData,newData);
                 // Save Preference
                 setPreferenceString(getSPreferences(), "APP_NOTES", updateNewPreference);
-                /*
-                // Convert Get Values to NoteData
-                NoteData convertNewData=new NoteData(noteId,noteName,noteEditText.getText().toString(),noteColor);
-                String newData=gson.toJson(convertNewData);
-                String oldData=gson.toJson(data);
-                // Change Data
-                String updateNewPreference=prefData.replace(oldData,newData);
-                // Save Preference
-                setPreferenceString(getSPreferences(), "APP_NOTES", updateNewPreference);
-                // Update Array
-                APP_NOTES.remove(dataPosition);
-                APP_NOTES.add(dataPosition,convertNewData);
-                 */
                 // Show Toast Message
                 Toast.makeText(getContext(), getString(R.string.note_saved_text), Toast.LENGTH_SHORT).show();
             }

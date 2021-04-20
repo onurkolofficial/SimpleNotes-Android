@@ -38,7 +38,7 @@ public class NoteManager {
         if(noteDataString.equals("NULL")) {
             // Show No Note Layout
             noNoteLayoutWeak.get().setVisibility(View.VISIBLE);
-            // Bookmarks Empty
+            // Clear Array
             APP_NOTES.clear();
         }
         else {

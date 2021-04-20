@@ -25,6 +25,7 @@ import java.util.List;
 import static com.onurkol.app.notes.activity.MainActivity.noteListViewWeak;
 import static com.onurkol.app.notes.controller.NoteController.removeNote;
 import static com.onurkol.app.notes.data.PreferenceData.APP_NOTES;
+import static com.onurkol.app.notes.popups.PopupEditNewNote.showNewNoteDialog;
 
 public class NoteListAdapter extends ArrayAdapter<NoteData> {
     private final LayoutInflater inflater;
@@ -55,9 +56,10 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
         if (convertView==null){
             convertView=inflater.inflate(R.layout.list_notes, null);
             holder=new ViewHolder();
-            holder.noteName=(TextView)convertView.findViewById(R.id.noteNameTextView);
-            holder.noteDeleteButton=(ImageButton)convertView.findViewById(R.id.noteDeleteButton);
-            holder.noteOpenButton=(CardView)convertView.findViewById(R.id.noteOpenLayout);
+            holder.noteName=convertView.findViewById(R.id.noteNameTextView);
+            holder.noteDeleteButton=convertView.findViewById(R.id.noteDeleteButton);
+            holder.noteEditButton=convertView.findViewById(R.id.noteEditButton);
+            holder.noteOpenButton=convertView.findViewById(R.id.noteOpenLayout);
             convertView.setTag(holder);
         }
         else{
@@ -83,6 +85,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
         holder.noteOpenButton.setCardBackgroundColor(background);
         holder.noteName.setTextColor(textColor);
         holder.noteDeleteButton.setColorFilter(textColor);
+        holder.noteEditButton.setColorFilter(textColor);
 
         // Button Click Event
         holder.noteDeleteButton.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +111,13 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
             }
         });
 
+        holder.noteEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNewNoteDialog(position);
+            }
+        });
+
         holder.noteOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,7 +133,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
     // View Holder
     private static class ViewHolder {
         TextView noteName;
-        ImageButton noteDeleteButton;
+        ImageButton noteDeleteButton,noteEditButton;
         CardView noteOpenButton;
     }
 }

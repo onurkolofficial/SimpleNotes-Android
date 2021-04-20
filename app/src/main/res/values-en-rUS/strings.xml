@@ -9,7 +9,7 @@
     <string name="no_new_note_summary">Click \'+\' to add new note.</string>
     <string name="no_new_note_text">No new note!</string>
     <string name="settings_category_general">General</string>
-    <string name="dialog_note_name_title">Create New Note!</string>
+    <string name="dialog_new_note_name_title">Create New Note!</string>
     <string name="dialog_note_name_text">Please enter note name.</string>
     <string name="dialog_note_color">Select a note color.</string>
     <string name="name_text">Name</string>
@@ -37,4 +37,7 @@
     <string name="save_text">Save</string>
     <string name="settings_about_version_text">About version.</string>
     <string name="settings_about_version_summary">Show this version changes.</string>
+    <string name="dialog_edit_note_name_title">Edit Note!</string>
+    <string name="edit_note_text">Edit Note</string>
+    <string name="apply_text">Apply</string>
 </resources>

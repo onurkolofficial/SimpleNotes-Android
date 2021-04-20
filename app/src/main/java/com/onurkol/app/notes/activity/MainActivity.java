@@ -21,7 +21,7 @@ import java.lang.ref.WeakReference;
 
 import static com.onurkol.app.notes.data.PreferenceData.startPreferenceData;
 import static com.onurkol.app.notes.fragments.SettingsFragment.setApplicationTheme;
-import static com.onurkol.app.notes.popups.DialogNewNote.showNewNoteDialog;
+import static com.onurkol.app.notes.popups.PopupEditNewNote.showNewNoteDialog;
 import static com.onurkol.app.notes.tools.ContextTool.setContext;
 import static com.onurkol.app.notes.tools.NoteManager.buildNoteList;
 import static com.onurkol.app.notes.tools.NoteManager.getNoteDataList;

@@ -9,7 +9,7 @@
     <string name="no_new_note_summary">\'+\'ya tıklayarak yeni not ekleyebilirsiniz.</string>
     <string name="no_new_note_text">Yeni not yok!</string>
     <string name="settings_category_general">Genel</string>
-    <string name="dialog_note_name_title">Yeni Not Oluştur!</string>
+    <string name="dialog_new_note_name_title">Yeni Not Oluştur!</string>
     <string name="dialog_note_name_text">Lütfen not ismini girin.</string>
     <string name="dialog_note_color">Bir not rengi seçin.</string>
     <string name="name_text">İsim</string>
@@ -37,4 +37,7 @@
     <string name="save_text">Kaydet</string>
     <string name="settings_about_version_text">Sürüm hakkında.</string>
     <string name="settings_about_version_summary">Bu sürümdeki değişiklikleri göster.</string>
+    <string name="dialog_edit_note_name_title">Notu Düzenle!</string>
+    <string name="edit_note_text">Notu Düzenle</string>
+    <string name="apply_text">Uygula</string>
 </resources>

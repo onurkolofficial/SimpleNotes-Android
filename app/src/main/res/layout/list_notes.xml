@@ -36,6 +36,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <ImageButton
+                android:id="@+id/noteEditButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"
+                android:tooltipText="@string/edit_note_text"
+                android:src="@drawable/ic_baseline_mode_edit_24" />
+            <ImageButton
                 android:id="@+id/noteDeleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
