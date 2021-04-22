@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import com.onurkol.app.notes.R;
 import com.onurkol.app.notes.activity.EditNoteActivity;
@@ -26,6 +28,7 @@ import static com.onurkol.app.notes.activity.MainActivity.noteListViewWeak;
 import static com.onurkol.app.notes.controller.NoteController.removeNote;
 import static com.onurkol.app.notes.data.PreferenceData.APP_NOTES;
 import static com.onurkol.app.notes.popups.PopupEditNewNote.showNewNoteDialog;
+import static com.onurkol.app.notes.popups.PopupLockUnlockOpenNote.showLockUnlockOpenDialog;
 
 public class NoteListAdapter extends ArrayAdapter<NoteData> {
     private final LayoutInflater inflater;
@@ -60,6 +63,8 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
             holder.noteDeleteButton=convertView.findViewById(R.id.noteDeleteButton);
             holder.noteEditButton=convertView.findViewById(R.id.noteEditButton);
             holder.noteOpenButton=convertView.findViewById(R.id.noteOpenLayout);
+            holder.noteLockStatus=convertView.findViewById(R.id.noteLockStatus);
+            holder.noteLockUnlockButton=convertView.findViewById(R.id.noteLockUnlockButton);
             convertView.setTag(holder);
         }
         else{
@@ -86,6 +91,21 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
         holder.noteName.setTextColor(textColor);
         holder.noteDeleteButton.setColorFilter(textColor);
         holder.noteEditButton.setColorFilter(textColor);
+        holder.noteLockStatus.setColorFilter(textColor);
+        holder.noteLockUnlockButton.setColorFilter(textColor);
+
+        // Check Note Lock Status
+        // Show lock image and Button events.
+        String notePass=curNote.getNotePassword();
+        boolean lockMode;
+        if(notePass==null || notePass.equals("null")) {
+            holder.noteLockStatus.setVisibility(View.GONE);
+            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_baseline_lock_24));
+        }
+        else {
+            holder.noteLockStatus.setVisibility(View.VISIBLE);
+            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_round_lock_open_24));
+        }
 
         // Button Click Event
         holder.noteDeleteButton.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +118,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // Update Data
-                                removeNote(curNote.getNoteID(),curNote.getNoteName(),curNote.getNoteText(),curNote.getNoteColor());
+                                removeNote(curNote.getNoteID(),curNote.getNoteName(),curNote.getNoteText(),curNote.getNotePassword(),curNote.getNoteColor());
                                 // Refresh ListView
                                 notes.remove(position);
                                 noteListViewWeak.get().invalidateViews();
@@ -121,19 +141,27 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> {
         holder.noteOpenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent editNoteIntent=new Intent(context, EditNoteActivity.class);
-                editNoteIntent.putExtra("NOTE_DATA_POSITION", position);
-                context.startActivity(editNoteIntent);
+                // Password Dialog.
+                showLockUnlockOpenDialog(position,false);
+            }
+        });
+
+        holder.noteLockUnlockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLockUnlockOpenDialog(position,true);
             }
         });
 
         return convertView;
     }
 
+
     // View Holder
     private static class ViewHolder {
         TextView noteName;
-        ImageButton noteDeleteButton,noteEditButton;
+        ImageButton noteDeleteButton,noteEditButton,noteLockUnlockButton;
+        ImageView noteLockStatus;
         CardView noteOpenButton;
     }
 }

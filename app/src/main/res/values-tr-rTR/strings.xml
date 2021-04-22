@@ -40,4 +40,19 @@
     <string name="dialog_edit_note_name_title">Notu Düzenle!</string>
     <string name="edit_note_text">Notu Düzenle</string>
     <string name="apply_text">Uygula</string>
+    <string name="lock_note_text">Notu Kilitle!</string>
+    <string name="lock_text">Kilitle</string>
+    <string name="unlock_text">Kilidi Aç</string>
+    <string name="lock_for_password_text">Kilitlemek için bir şifre girin.</string>
+    <string name="unlock_for_password_text">Kilidi açmak için bir şifre girin.</string>
+    <string name="password_text">Şifre</string>
+    <string name="open_text">Aç</string>
+    <string name="open_for_password_text">Notu açmak için bir şifre girin.</string>
+    <string name="unlock_note_text">Notun Kilidini Aç!</string>
+    <string name="open_note_text">Notu Aç!</string>
+    <string name="empty_password_text">Şifreyi boş bıraktınız! Lütfen tekrar deneyin.</string>
+    <string name="wrong_password_text">Şifre yanlış! Lütfen tekrar deneyin.</string>
+    <string name="ok_text">Tamam</string>
+    <string name="success_lock_text">Kilitleme Başarılı!</string>
+    <string name="success_unlock_text">Kilit Açma Başarılı!</string>
 </resources>

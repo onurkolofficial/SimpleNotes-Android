@@ -21,11 +21,11 @@ public class NoteController {
 
     static String mNote;
 
-    public static void addNewNote(String Id, String Name, String Note, int Color){
+    public static void addNewNote(String Id, String Name, String Note, String Password, int Color){
         mNote=((Note==null) ? "" : Note);
 
         // Convert Get Values to NoteData
-        NoteData getNoteData=new NoteData(Id,Name,mNote,Color);
+        NoteData getNoteData=new NoteData(Id,Name,mNote,Password,Color);
         // Convert NoteData to JSON String
         String getData="["+gson.toJson(getNoteData)+"]";
 
@@ -52,13 +52,13 @@ public class NoteController {
         setPreferenceString(getSPreferences(), "APP_NOTES", newData);
     }
 
-    public static void removeNote(String Id, String Name, String Note, int Color){
+    public static void removeNote(String Id, String Name, String Note, String Password, int Color){
         mNote=((Note==null) ? "" : Note);
 
         // Get Preference Data
         String allNoteData=getPreferenceString(getSPreferences(), "APP_NOTES");
         // Convert Get Values to NoteData
-        NoteData convertData=new NoteData(Id,Name,mNote,Color);
+        NoteData convertData=new NoteData(Id,Name,mNote,Password,Color);
         // Convert NoteData to JSON String
         String deleteData=gson.toJson(convertData);
         String newData="",deleteConvert="";

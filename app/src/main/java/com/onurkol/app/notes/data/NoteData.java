@@ -5,12 +5,14 @@ public class NoteData {
     private String mNoteName;
     private String mNoteText;
     private int mNoteColor;
+    private String mNotePassword;
 
-    public NoteData(String NoteID, String NoteName, String NoteText, int NoteColor){
+    public NoteData(String NoteID, String NoteName, String NoteText, String NotePassword, int NoteColor){
         this.mNoteID=NoteID;
         this.mNoteName=NoteName;
         this.mNoteText=NoteText;
         this.mNoteColor=NoteColor;
+        this.mNotePassword=NotePassword;
     }
 
     public String getNoteID(){
@@ -25,6 +27,9 @@ public class NoteData {
     public int getNoteColor(){
         return mNoteColor;
     }
+    public String getNotePassword(){
+        return mNotePassword;
+    }
 
     public void setNoteName(String noteName){
         mNoteName=noteName;
@@ -34,5 +39,8 @@ public class NoteData {
     }
     public void setNoteColor(int noteColor){
         mNoteColor=noteColor;
+    }
+    public void setNotePassword(String notePassword){
+        mNotePassword=notePassword;
     }
 }

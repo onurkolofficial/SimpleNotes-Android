@@ -55,7 +55,7 @@ public class PopupEditNewNote {
         newNoteDialogClass();
     }
 
-    public static void newNoteDialogClass() {
+    private static void newNoteDialogClass() {
         Context context=getContext();
         Activity activity=(Activity)context;
 
@@ -68,7 +68,7 @@ public class PopupEditNewNote {
         newNoteDialog.setContentView(R.layout.popup_edit_new_note);
         // Dialog Main Elements
         dialogNameEditText = newNoteDialog.findViewById(R.id.dialogNewNoteName);
-        dialogCancelButton = newNoteDialog.findViewById(R.id.dialogNoteCancelButton);
+        dialogCancelButton = newNoteDialog.findViewById(R.id.dialogCancelButton);
         dialogNoteAddButton = newNoteDialog.findViewById(R.id.dialogNoteAddButton);
         dialogEditNewNoteTitle = newNoteDialog.findViewById(R.id.dialogEditNewNoteTitle);
 
@@ -103,7 +103,7 @@ public class PopupEditNewNote {
             defaultNoteColor = context.getResources().getColor(R.color.cardColorWhite);
         }
         else{
-            // Set Title
+            // Set Texts
             dialogEditNewNoteTitle.setText(context.getString(R.string.dialog_edit_note_name_title));
             dialogNoteAddButton.setText(context.getString(R.string.apply_text));
 
@@ -140,7 +140,7 @@ public class PopupEditNewNote {
 
                     String noteID = random(20);
                     // Add Note
-                    addNewNote(noteID, noteName, null, noteColor);
+                    addNewNote(noteID, noteName, null, null, noteColor);
                     // Refresh ListView
                     noteListViewWeak.get().invalidateViews();
                     // Hide No Note Layout

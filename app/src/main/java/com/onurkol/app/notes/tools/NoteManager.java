@@ -56,9 +56,10 @@ public class NoteManager {
                     String gId=getNotesData.get(i).getNoteID();
                     String gName=getNotesData.get(i).getNoteName();
                     String gNote=getNotesData.get(i).getNoteText();
+                    String gPassword=getNotesData.get(i).getNotePassword();
                     int gColor=getNotesData.get(i).getNoteColor();
                     // Add View
-                    APP_NOTES.add(new NoteData(gId,gName,gNote,gColor));
+                    APP_NOTES.add(new NoteData(gId,gName,gNote,gPassword,gColor));
                     // Count
                     i++;
                 }
