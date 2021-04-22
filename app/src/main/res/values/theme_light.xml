@@ -21,7 +21,6 @@
         <item name="toolbarStyle">@style/toolbarLight</item>
         <item name="android:windowBackground">@color/light_background</item>
         <item name="cardViewStyle">@style/CardViewLight</item>
-
     </style>
     <!-- Light Theme Style !-->
     <style name="imageButtonLight" parent="Widget.AppCompat.ImageButton">
@@ -43,16 +42,5 @@
     </style>
     <style name="FixedNormalButton" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/white</item>
-    </style>
-
-    <!-- Non-Theme Styles !-->
-    <!-- Welcome Screen Style !-->
-    <style name="WelcomeBodyText">
-        <item name="android:textSize">36sp</item>
-        <item name="android:fontFamily">@font/lekton_bold</item>
-    </style>
-    <style name="WelcomeCheckBox">
-        <item name="android:buttonTint">@color/checkbox_light</item>
-        <item name="android:textColor">@color/dark_text_color</item>
     </style>
 </resources>

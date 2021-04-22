@@ -23,7 +23,6 @@
         <item name="cardViewStyle">@style/CardViewDark</item>
         <item name="android:textColorSecondaryInverse">@color/gray4</item>
         <item name="buttonStyle">@style/FixedNormalButton</item>
-
     </style>
     <!-- Dark Theme Style !-->
     <style name="imageButtonDark" parent="Widget.AppCompat.ImageButton">
