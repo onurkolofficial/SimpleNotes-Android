@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_dark_mode_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_mode_edit_24.xml" value="0.1435" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_playlist_add_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_sync_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_translate_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_outline_lock_24.xml" value="0.1435" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_round_lock_open_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_main.xml" value="0.16458333333333333" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_note_edit.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_about.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_language.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_theme.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_note_edit.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_about.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_language.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_theme.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_list.xml" value="0.22" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_edit_new_note.xml" value="0.16458333333333333" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_lock_unlock_note.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/preferences/xml/preference_settings.xml" value="0.25" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/preferences/xml/preference_settings_about.xml" value="0.22" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/preferences/xml/preference_settings_language.xml" value="0.22" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/preferences/xml/preference_settings_theme.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_main.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_no_action.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_note_edit.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_settings.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/views/layout/layout_no_note.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/views/layout/view_no_note.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/simple-notes/drawable/rounded_corner.xml" value="0.182" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

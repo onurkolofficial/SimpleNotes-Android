@@ -3,48 +3,50 @@ package com.onurkol.app.notes.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.onurkol.app.notes.R;
 import com.onurkol.app.notes.fragments.SettingsFragment;
-
-import static com.onurkol.app.notes.fragments.SettingsFragment.setApplicationTheme;
-import static com.onurkol.app.notes.tools.ContextTool.setContext;
+import com.onurkol.app.notes.lib.AppDataManager;
+import com.onurkol.app.notes.lib.ContextManager;
 
 public class SettingsActivity extends AppCompatActivity {
+    public static boolean isConfigChanged=false;
 
     ImageButton backButton;
     TextView settingName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Set Current Activity Context
-        setContext(this);
-        // Load Theme
-        setApplicationTheme(this);
-        // Create View
+        ContextManager.Build(this);
+
         super.onCreate(savedInstanceState);
+        AppDataManager.loadApplicationData();
         setContentView(R.layout.activity_settings);
 
-        // Get Elements
-        backButton=findViewById(R.id.backSettingsButton);
-        settingName=findViewById(R.id.settingsTitle);
+        backButton=findViewById(R.id.backButton);
+        settingName=findViewById(R.id.settingName);
 
-        // Set Toolbar Title
         settingName.setText(getString(R.string.settings_text));
 
-        // Button Click Events
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Close This Activity
-                finish();
-            }
-        });
+        backButton.setOnClickListener(view -> finish());
 
-        // Get Fragment
-        getSupportFragmentManager().beginTransaction().add(R.id.settingsFragmentContent,new SettingsFragment()).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.settingsFragmentContent,new SettingsFragment()).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        ContextManager.Build(this);
+
+        if(isConfigChanged) {
+            MainActivity.isConfigChanged=true;
+            AppDataManager.loadApplicationData();
+            recreate();
+            isConfigChanged=false;
+        }
+        super.onResume();
     }
 }

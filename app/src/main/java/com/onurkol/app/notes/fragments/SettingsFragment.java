@@ -1,112 +1,68 @@
 package com.onurkol.app.notes.fragments;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.CheckBoxPreference;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.onurkol.app.notes.R;
-import com.onurkol.app.notes.activity.AboutActivity;
-import com.onurkol.app.notes.tools.ContextTool;
+import com.onurkol.app.notes.activity.MainActivity;
+import com.onurkol.app.notes.activity.settings.SettingsAboutActivity;
+import com.onurkol.app.notes.activity.settings.SettingsLanguageActivity;
+import com.onurkol.app.notes.activity.settings.SettingsThemeActivity;
+import com.onurkol.app.notes.interfaces.AppData;
+import com.onurkol.app.notes.lib.AppPreferenceManager;
 
-import static com.onurkol.app.notes.activity.MainActivity.isThemeChanged;
-import static com.onurkol.app.notes.data.PreferenceData.THEME_LIST;
-import static com.onurkol.app.notes.data.PreferenceData.setupAppThemes;
-import static com.onurkol.app.notes.tools.SharedPreferenceManager.getPreferenceInteger;
-import static com.onurkol.app.notes.tools.SharedPreferenceManager.getSPreferences;
-import static com.onurkol.app.notes.tools.SharedPreferenceManager.setPreferenceInteger;
+public class SettingsFragment extends PreferenceFragmentCompat implements AppData {
 
-public class SettingsFragment extends PreferenceFragmentCompat {
-    ListPreference themesPref;
-    CheckBoxPreference lineNumPref;
-    Preference aboutPref;
-    Intent aboutIntent;
+    Preference themesPref,langsPref,aboutPref;
+    CheckBoxPreference lineNumbersPref,dateInfoPref;
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        // Set Resource
-        setPreferencesFromResource(R.xml.settings_preference, rootKey);
+    public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
+        setPreferencesFromResource(R.xml.preference_settings,rootKey);
 
-        // Get Preferences
-        aboutPref=findPreference("show_about");
-        lineNumPref=findPreference("line_numbers_check");
-        themesPref=findPreference("app_themes_list");
+        AppPreferenceManager prefManager=AppPreferenceManager.getInstance();
 
-        // Check Themes
-        if(THEME_LIST.size()<=0)
-            setupAppThemes();
+        int settingLineNumbers=prefManager.getInt(KEY_NOTE_LINE_NUMBERS);
+        int settingDateInfo=prefManager.getInt(KEY_NOTE_DATE_INFO);
 
-        // Add Themes
-        CharSequence[] themeEntries=new String[THEME_LIST.size()];
-        CharSequence[] themeEntryValues=new String[THEME_LIST.size()];
+        dateInfoPref=findPreference("dateInfoPref");
+        lineNumbersPref=findPreference("lineNumberPref");
+        themesPref=findPreference("themesPref");
+        langsPref=findPreference("languagesPref");
+        aboutPref=findPreference("aboutPref");
 
-        for(int i=0; i<THEME_LIST.size(); i++){
-            themeEntries[i]=THEME_LIST.get(i);
-            themeEntryValues[i]=String.valueOf(i);
-        }
-        themesPref.setEntries(themeEntries);
-        themesPref.setEntryValues(themeEntryValues);
+        lineNumbersPref.setChecked(settingLineNumbers==1);
+        dateInfoPref.setChecked(settingDateInfo==1);
 
-        // Set Default Values
-        // Theme
-        themesPref.setValue(String.valueOf(getPreferenceInteger(getSPreferences(), "APP_THEME")));
-        // Line Numbers
-        int lineNumberData=getPreferenceInteger(getSPreferences(), "APP_LINE_NUMBER");
-        lineNumPref.setChecked(lineNumberData==1);
-
-        // Preference Click/Change Events
-        aboutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // Start Web Setting Activity
-                startActivity(new Intent(getActivity(), AboutActivity.class));
-                return false;
-            }
+        lineNumbersPref.setOnPreferenceClickListener(preference -> {
+            int newValue=((settingLineNumbers==1) ? 0 : ((settingLineNumbers==0) ? 1 : 0));
+            prefManager.setPreference(KEY_NOTE_LINE_NUMBERS, newValue);
+            return false;
         });
-        themesPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                // Convert Object to Integer
-                int convertNewValue=Integer.parseInt(newValue.toString());
-                // Save Preference
-                setPreferenceInteger(getSPreferences(), "APP_THEME",convertNewValue);
-                // Set Value
-                themesPref.setValue(String.valueOf(convertNewValue));
-                // Change Theme
-                setApplicationTheme(getActivity());
-                // Save Value
-                isThemeChanged=true;
-                // Recreate View
-                getActivity().recreate();
-
-                return false;
-            }
+        dateInfoPref.setOnPreferenceClickListener(preference -> {
+            int newValue=((settingDateInfo==1) ? 0 : ((settingDateInfo==0) ? 1 : 0));
+            prefManager.setPreference(KEY_NOTE_DATE_INFO, newValue);
+            MainActivity.onUpdateNoteOnSettings=true;
+            return false;
         });
-        lineNumPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                // Get Value
-                int getValue=getPreferenceInteger(getSPreferences(), "APP_LINE_NUMBER");
-                // Set & Save New Value
-                int newValue=((getValue==1) ? 0 : ((getValue==0) ? 1 : 0));
-                setPreferenceInteger(getSPreferences(),"APP_LINE_NUMBER", newValue);
-
-                return false;
-            }
+        themesPref.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(getActivity(), SettingsThemeActivity.class));
+            return false;
+        });
+        langsPref.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(getActivity(), SettingsLanguageActivity.class));
+            return false;
+        });
+        aboutPref.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(getActivity(), SettingsAboutActivity.class));
+            return false;
         });
     }
 
-    public static void setApplicationTheme(Context context){
-        // Set Theme
-        int getAppTheme=getPreferenceInteger(getSPreferences(), "APP_THEME");
-        if(getAppTheme==0)
-            context.setTheme(R.style.LightTheme);
-        else if(getAppTheme==1)
-            context.setTheme(R.style.DarkTheme);
-    }
 }

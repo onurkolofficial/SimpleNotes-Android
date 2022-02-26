@@ -1,17 +1,36 @@
 package com.onurkol.app.notes.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
+import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
+import com.google.android.play.core.install.model.UpdateAvailability;
 import com.onurkol.app.notes.R;
+import com.onurkol.app.notes.adapters.NoteListAdapter;
+import com.onurkol.app.notes.interfaces.AppData;
+import com.onurkol.app.notes.lib.AppDataManager;
+import com.onurkol.app.notes.lib.ContextManager;
+import com.onurkol.app.notes.lib.notes.NoteManager;
+import com.onurkol.app.notes.popups.PopupNewNote;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
 import com.startapp.sdk.adsbase.StartAppAd;
@@ -19,117 +38,175 @@ import com.startapp.sdk.adsbase.StartAppSDK;
 
 import java.lang.ref.WeakReference;
 
-import static com.onurkol.app.notes.data.PreferenceData.startPreferenceData;
-import static com.onurkol.app.notes.fragments.SettingsFragment.setApplicationTheme;
-import static com.onurkol.app.notes.popups.PopupEditNewNote.showNewNoteDialog;
-import static com.onurkol.app.notes.tools.ContextTool.setContext;
-import static com.onurkol.app.notes.tools.NoteManager.buildNoteList;
-import static com.onurkol.app.notes.tools.NoteManager.getNoteDataList;
+public class MainActivity extends AppCompatActivity implements AppData {
+    public static boolean isCreated,
+            isConfigChanged=false,
+            onUpdateNoteOnSettings=false;
 
-public class MainActivity extends AppCompatActivity {
+    private AppUpdateManager mAppUpdateManager;
+    private static final int RC_APP_UPDATE = 11;
+
+    NoteManager noteManager;
 
     TextView toolbarTitle;
-    ImageButton toolbarExitBtn,toolbarSettingsBtn;
-    FloatingActionButton newNoteBtn;
-    public static WeakReference<ListView> noteListViewWeak;
     ListView noteListView;
-    public static WeakReference<LinearLayout> noNoteLayoutWeak;
+    ImageButton closeAppButton,settingsButton;
     LinearLayout noNoteLayout;
+    FloatingActionButton newNoteButton;
 
-    Intent settingsIntent;
-
-    Banner startAppBanner1;
-
-    public static Boolean isThemeChanged=false;
+    NoteListAdapter noteListAdapter;
+    static WeakReference<NoteListAdapter> noteListAdapterStatic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Set Current Activity Context
-        setContext(this);
-        // Load Preference Data
-        startPreferenceData();
-        // Load Theme
-        setApplicationTheme(this);
-        // Create View
+        ContextManager.BuildBase(this);
+
         super.onCreate(savedInstanceState);
+        AppDataManager.loadApplicationData();
         setContentView(R.layout.activity_main);
 
-        // Ads Initialize
+        noteManager=NoteManager.getManager();
+
+        toolbarTitle=findViewById(R.id.toolbarTitle);
+        noteListView=findViewById(R.id.noteListView);
+        closeAppButton=findViewById(R.id.closeAppButton);
+        settingsButton=findViewById(R.id.settingsButton);
+        noNoteLayout=findViewById(R.id.View_No_Note);
+        newNoteButton=findViewById(R.id.newNoteButton);
+
+        toolbarTitle.setText(getString(R.string.app_name));
+
+        closeAppButton.setOnClickListener(view -> System.exit(0));
+        settingsButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)));
+        newNoteButton.setOnClickListener(v -> PopupNewNote.Show());
+
+        noteListAdapter=new NoteListAdapter(this,noteListView,NOTE_LIST);
+        noteListView.setAdapter(noteListAdapter);
+        noteListAdapterStatic=new WeakReference<>(noteListAdapter);
+
+        if(noteManager.getNoteList().size()>0) {
+            noNoteLayout.setVisibility(View.GONE);
+            noteManager.syncNoteListDataOnPreference();
+        }
+
+        // Ads (StartApp)
         String getAppId=getString(R.string.startapp_app_id);
-        StartAppSDK.init(this, getAppId, false);
-        // Disable Startapp Splash Screen.
+        StartAppSDK.init(this, getAppId);
         StartAppAd.disableSplash();
-        // Get Ads Element & Set Listener
-        startAppBanner1=findViewById(R.id.startAppBanner1);
-        // Set Listener
-        startAppBanner1.setBannerListener(new BannerListener() {
+
+        final Banner appBanner=findViewById(R.id.startAppBanner);
+        appBanner.setBannerListener(new BannerListener() {
             @Override
             public void onReceiveAd(View view) {
-                startAppBanner1.setVisibility(View.VISIBLE);
+                appBanner.setVisibility(View.VISIBLE);
             }
             @Override
             public void onFailedToReceiveAd(View view) {
-                startAppBanner1.setVisibility(View.GONE);
+                appBanner.setVisibility(View.GONE);
             }
             @Override
             public void onImpression(View view) {}
             @Override
             public void onClick(View view) {}
         });
-        // Hide Default
-        startAppBanner1.setVisibility(View.GONE);
+        appBanner.setVisibility(View.GONE);
 
-        // Get Elements
-        noNoteLayoutWeak=new WeakReference<>(findViewById(R.id.noNewNoteLayout));
-        noNoteLayout=noNoteLayoutWeak.get();
-        noteListViewWeak=new WeakReference<>(findViewById(R.id.noteListView));
-        noteListView=noteListViewWeak.get();
-        toolbarTitle=findViewById(R.id.applicationToolbarTitle);
-        toolbarExitBtn=findViewById(R.id.exitAppButton);
-        toolbarSettingsBtn=findViewById(R.id.settingsButton);
-        newNoteBtn=findViewById(R.id.newNoteButton);
+        isCreated=true;
+    }
 
-        // Set Toolbar Title
-        toolbarTitle.setText(getString(R.string.app_name));
+    public static void onUpdateNoteList(){
+        updateListClass(false);
+    }
+    public static void onUpdateNoteListSet(){
+        updateListClass(true);
+    }
 
-        // Exit Button
-        toolbarExitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.exit(0);
-            }
-        });
+    private static void updateListClass(boolean isSet){
+        Activity $this=ContextManager.getManager().getContextActivity();
 
-        toolbarSettingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                settingsIntent=new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(settingsIntent);
-            }
-        });
+        ListView noteListView=$this.findViewById(R.id.noteListView);
+        LinearLayout noNoteLayout=$this.findViewById(R.id.View_No_Note);
 
-        // New Note Button
-        newNoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNewNoteDialog();
-            }
-        });
+        if(isSet)
+            noteListAdapterStatic.get().notifyDataSetChanged();
+        noteListView.invalidateViews();
+        if(NoteManager.getManager().getNoteList().size()>0)
+            noNoteLayout.setVisibility(View.GONE);
+        else
+            noNoteLayout.setVisibility(View.VISIBLE);
+    }
 
-        // Init ...
-        buildNoteList(noteListView);
+    public static void startNoteEditActivity(Context context, int position){
+        Intent editNoteIntent=new Intent(context, NoteEditActivity.class);
+        editNoteIntent.putExtra(KEY_EXTRA_NOTE_POSITION, position);
+        context.startActivity(editNoteIntent);
     }
 
     @Override
     protected void onResume() {
-        if(isThemeChanged){
-            isThemeChanged=false;
-            this.recreate();
-            // Fixed theme change to reset layout issue.
-            getNoteDataList();
+        ContextManager.BuildBase(this);
+
+        if(isConfigChanged) {
+            AppDataManager.loadApplicationData();
+            recreate();
+            isConfigChanged=false;
         }
-        // Fixed back activity to set context
-        setContext(this);
+        if(onUpdateNoteOnSettings) {
+            onUpdateNoteListSet();
+            onUpdateNoteOnSettings=false;
+        }
         super.onResume();
     }
+
+    @Override
+    protected void onStart() {
+        // Create App Update Manager
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+        mAppUpdateManager.registerListener(installStateUpdatedListener);
+
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(result -> {
+            if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && result.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, MainActivity.this, RC_APP_UPDATE);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (result.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            }
+        });
+        super.onStart();
+    }
+    private void popupSnackbarForCompleteUpdate() {
+        Snackbar snackbar = Snackbar.make(
+                findViewById(R.id.appMainLayout),
+                getString(R.string.update_new_version_available),
+                Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction(getString(R.string.install_text), view -> {
+            if (mAppUpdateManager != null)
+                mAppUpdateManager.completeUpdate();
+        });
+        snackbar.setActionTextColor(ContextCompat.getColor(this,R.color.primary));
+        snackbar.show();
+    }
+    InstallStateUpdatedListener installStateUpdatedListener = new InstallStateUpdatedListener() {
+        @Override
+        public void onStateUpdate(InstallState state) {
+            if (state.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else if (state.installStatus() == InstallStatus.INSTALLED){
+                if (mAppUpdateManager != null)
+                    mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+                // Show Message
+                Toast.makeText(MainActivity.this, getString(R.string.update_install_completed), Toast.LENGTH_SHORT).show();
+            }
+            /* else {
+                //Log.e(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
+            } */
+        }
+    };
 }

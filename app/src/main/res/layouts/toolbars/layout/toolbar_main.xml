@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- Calculator Toolbar !-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!-- Toolbar Title !-->
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="TOOLBAR_TITLE"/>
+        <!-- Toolbar Right Menu !-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.02"
+            android:gravity="end"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/settingsButton"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:background="?attr/actionBarItemBackground"
+                android:src="@drawable/ic_baseline_settings_24"
+                android:tooltipText="@string/settings_text"
+                android:contentDescription="@string/settings_text"/>
+            <ImageButton
+                android:id="@+id/closeAppButton"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:background="?attr/actionBarItemBackground"
+                android:src="@drawable/ic_baseline_close_24"
+                android:tooltipText="@string/exit_application"
+                android:contentDescription="@string/exit_application"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

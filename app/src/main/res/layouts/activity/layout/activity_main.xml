@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/appMainLayout"
+    tools:context=".activity.MainActivity">
+    <!-- Content Main !-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- Toolbar Main !-->
+        <include
+            layout="@layout/toolbar_main" />
+        <!-- Layouts !-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <!-- View !-->
+            <include
+                layout="@layout/view_no_note" />
+            <!-- List !-->
+            <ListView
+                android:id="@+id/noteListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/transparent" />
+            <!-- Floating !-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/newNoteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_baseline_add_24"
+                android:layout_margin="25dp"
+                android:elevation="6dp"
+                android:tooltipText="@string/add_note_text" />
+        </FrameLayout>
+        <!-- ADS !-->
+        <com.startapp.sdk.ads.banner.Banner
+            android:id="@+id/startAppBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

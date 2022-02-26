@@ -1,167 +1,166 @@
 package com.onurkol.app.notes.adapters;
 
-import android.app.AlertDialog;
+import static com.onurkol.app.notes.tools.CharLimiter.Limit;
+
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.onurkol.app.notes.R;
-import com.onurkol.app.notes.activity.EditNoteActivity;
+import com.onurkol.app.notes.activity.MainActivity;
 import com.onurkol.app.notes.data.NoteData;
+import com.onurkol.app.notes.interfaces.AppData;
+import com.onurkol.app.notes.lib.AppPreferenceManager;
+import com.onurkol.app.notes.lib.notes.NoteManager;
+import com.onurkol.app.notes.popups.PopupEditNote;
+import com.onurkol.app.notes.popups.PopupLockNote;
+import com.onurkol.app.notes.popups.PopupOpenNote;
+import com.onurkol.app.notes.popups.PopupUnlockNote;
 
 import java.util.List;
 
-import static com.onurkol.app.notes.activity.MainActivity.noteListViewWeak;
-import static com.onurkol.app.notes.controller.NoteController.removeNote;
-import static com.onurkol.app.notes.data.PreferenceData.APP_NOTES;
-import static com.onurkol.app.notes.popups.PopupEditNewNote.showNewNoteDialog;
-import static com.onurkol.app.notes.popups.PopupLockUnlockOpenNote.showLockUnlockOpenDialog;
-
-public class NoteListAdapter extends ArrayAdapter<NoteData> {
+public class NoteListAdapter extends ArrayAdapter<NoteData> implements AppData {
     private final LayoutInflater inflater;
-    private final Context context;
     private ViewHolder holder;
-    private final List<NoteData> notes;
+    private static List<NoteData> noteData;
+    private final ListView noteListView;
+    private Context mContext;
 
-    public NoteListAdapter(Context context, List<NoteData> notes){
-        super(context,0, notes);
-        this.context=context;
-        this.notes=notes;
+    public NoteListAdapter(Context context, ListView NoteListView, List<NoteData> NoteData){
+        super(context,0,NoteData);
+        noteData=NoteData;
+        noteListView=NoteListView;
         inflater=LayoutInflater.from(context);
-    }
-
-    @Override
-    public int getCount() {
-        return notes.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return notes.get(position).hashCode();
+        mContext=context;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if (convertView==null){
-            convertView=inflater.inflate(R.layout.list_notes, null);
+        if (convertView==null) {
+            convertView=inflater.inflate(R.layout.item_note_list, null);
             holder=new ViewHolder();
-            holder.noteName=convertView.findViewById(R.id.noteNameTextView);
-            holder.noteDeleteButton=convertView.findViewById(R.id.noteDeleteButton);
-            holder.noteEditButton=convertView.findViewById(R.id.noteEditButton);
-            holder.noteOpenButton=convertView.findViewById(R.id.noteOpenLayout);
-            holder.noteLockStatus=convertView.findViewById(R.id.noteLockStatus);
+            holder.noteNameText=convertView.findViewById(R.id.noteNameText);
+            holder.createdDateText=convertView.findViewById(R.id.createdDateText);
+            holder.createdDateValue=convertView.findViewById(R.id.createdDateValue);
+            holder.lastEditDateText=convertView.findViewById(R.id.lastEditDateText);
+            holder.lastEditDateValue=convertView.findViewById(R.id.lastEditDateValue);
             holder.noteLockUnlockButton=convertView.findViewById(R.id.noteLockUnlockButton);
+            holder.noteEditButton=convertView.findViewById(R.id.noteEditButton);
+            holder.noteDeleteButton=convertView.findViewById(R.id.noteDeleteButton);
+            holder.noteOpenLayoutButton=convertView.findViewById(R.id.noteOpenLayoutButton);
+            holder.noteLockStatus=convertView.findViewById(R.id.noteLockStatus);
+            holder.noteDateInfo=convertView.findViewById(R.id.noteDateInfo);
             convertView.setTag(holder);
         }
         else{
             holder=(ViewHolder)convertView.getTag();
         }
-        // Get Current Note Data
-        final NoteData curNote=notes.get(position);
+        final NoteData currentData=noteData.get(position);
+        final AppPreferenceManager prefManager=AppPreferenceManager.getInstance();
 
-        // Set List Item Data
-        holder.noteName.setText(curNote.getNoteName());
-        // Card View Style
-        int textColor,background;
-        background=curNote.getNoteColor();
-        // Check Text Color
-        Resources res=context.getResources();
-        if(background==res.getColor(R.color.cardColorWhite) ||
-                background==res.getColor(R.color.cardColorYellow) ||
-                background==res.getColor(R.color.cardColorLime) ||
-                background==res.getColor(R.color.cardColorAmber))
-            textColor=context.getResources().getColor(R.color.black);
+        int showDateInfo=prefManager.getInt(KEY_NOTE_DATE_INFO);
+
+        int textColor,
+                background=currentData.getNoteColor();
+
+        if(background==ContextCompat.getColor(getContext(),R.color.cardColorWhite) ||
+                background==ContextCompat.getColor(getContext(),R.color.cardColorYellow) ||
+                background==ContextCompat.getColor(getContext(),R.color.cardColorLime) ||
+                background==ContextCompat.getColor(getContext(),R.color.cardColorAmber))
+            textColor=ContextCompat.getColor(getContext(),R.color.black);
         else
-            textColor=context.getResources().getColor(R.color.white);
-        holder.noteOpenButton.setCardBackgroundColor(background);
-        holder.noteName.setTextColor(textColor);
+            textColor=ContextCompat.getColor(getContext(),R.color.white);
+        holder.noteOpenLayoutButton.setCardBackgroundColor(background);
+        holder.noteNameText.setTextColor(textColor);
+        holder.createdDateText.setTextColor(textColor);
+        holder.createdDateValue.setTextColor(textColor);
+        holder.lastEditDateText.setTextColor(textColor);
+        holder.lastEditDateValue.setTextColor(textColor);
         holder.noteDeleteButton.setColorFilter(textColor);
         holder.noteEditButton.setColorFilter(textColor);
-        holder.noteLockStatus.setColorFilter(textColor);
+        holder.noteLockStatus.setColorFilter(background);
         holder.noteLockUnlockButton.setColorFilter(textColor);
 
-        // Check Note Lock Status
-        // Show lock image and Button events.
-        String notePass=curNote.getNotePassword();
-        boolean lockMode;
-        if(notePass==null || notePass.equals("null")) {
-            holder.noteLockStatus.setVisibility(View.GONE);
-            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_baseline_lock_24));
+        holder.noteNameText.setText(Limit(currentData.getNoteTitle(),22));
+        holder.createdDateValue.setText(currentData.getNoteCreateDate());
+        String editDateText;
+        if(currentData.getNoteEditDate()!=null)
+            editDateText=currentData.getNoteEditDate();
+        else
+            editDateText="-";
+        holder.lastEditDateValue.setText(editDateText);
+
+        String notePassword=currentData.getNotePassword();
+        if(notePassword==null){
+            holder.noteLockStatus.setVisibility(View.INVISIBLE);
+            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.ic_baseline_lock_24));
         }
-        else {
+        else{
             holder.noteLockStatus.setVisibility(View.VISIBLE);
-            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_round_lock_open_24));
+            holder.noteLockUnlockButton.setImageDrawable(ContextCompat.getDrawable(getContext(),R.drawable.ic_round_lock_open_24));
         }
 
-        // Button Click Event
-        holder.noteDeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                builder.setMessage(context.getString(R.string.sure_delete_note_text))
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(context.getString(R.string.yes_text), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // Update Data
-                                removeNote(curNote.getNoteID(),curNote.getNoteName(),curNote.getNoteText(),curNote.getNotePassword(),curNote.getNoteColor());
-                                // Refresh ListView
-                                notes.remove(position);
-                                noteListViewWeak.get().invalidateViews();
-                                // Update Array
-                                APP_NOTES=notes;
-                            }
-                        })
-                        .setNegativeButton(context.getString(R.string.no_text), null)
-                        .show();
-            }
+        if(showDateInfo==1)
+            holder.noteDateInfo.setVisibility(View.VISIBLE);
+        else
+            holder.noteDateInfo.setVisibility(View.GONE);
+
+        holder.noteDeleteButton.setOnClickListener(view -> {
+            AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+            builder.setMessage(getContext().getString(R.string.sure_delete_note_text))
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(getContext().getString(R.string.yes_text), (dialogInterface, i) -> {
+                        NoteManager.getManager().deleteNote(position);
+
+                        MainActivity.onUpdateNoteList();
+                    })
+                    .setNegativeButton(getContext().getString(R.string.no_text), null)
+                    .show();
         });
 
-        holder.noteEditButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showNewNoteDialog(position);
-            }
+        holder.noteEditButton.setOnClickListener(view -> PopupEditNote.Show(position));
+        holder.noteLockUnlockButton.setOnClickListener(v -> {
+            if(currentData.getNotePassword()==null)
+                PopupLockNote.Show(position);
+            else
+                PopupUnlockNote.Show(position);
         });
-
-        holder.noteOpenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Password Dialog.
-                showLockUnlockOpenDialog(position,false);
-            }
-        });
-
-        holder.noteLockUnlockButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showLockUnlockOpenDialog(position,true);
-            }
+        holder.noteOpenLayoutButton.setOnClickListener(v -> {
+            if(currentData.getNotePassword()==null)
+                MainActivity.startNoteEditActivity(getContext(),position);
+            else
+                PopupOpenNote.Show(position);
         });
 
         return convertView;
     }
 
-
-    // View Holder
     private static class ViewHolder {
-        TextView noteName;
-        ImageButton noteDeleteButton,noteEditButton,noteLockUnlockButton;
+        TextView noteNameText,
+                createdDateText,
+                lastEditDateText,
+                createdDateValue,
+                lastEditDateValue;
+        ImageButton noteLockUnlockButton,
+                noteEditButton,
+                noteDeleteButton;
         ImageView noteLockStatus;
-        CardView noteOpenButton;
+        CardView noteOpenLayoutButton;
+        LinearLayout noteDateInfo;
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.NoteEditActivity">
+    <!-- Toolbar Note !-->
+    <include
+        layout="@layout/toolbar_note_edit"/>
+    <!-- EditText !-->
+    <com.onurkol.app.notes.edittext.SimpleNotesEditText
+        android:id="@+id/noteEditText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:inputType="text|textMultiLine"
+        android:background="@color/transparent"
+        android:textSize="16sp"
+        android:gravity="top"/>
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/settings_category_general"
+        app:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_baseline_access_time_24"
+            android:key="dateInfoPref"
+            android:summary="@string/date_info_summary"
+            android:title="@string/date_info_text" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_baseline_format_list_numbered_24"
+            android:key="lineNumberPref"
+            android:summary="@string/settings_line_numbers_summary"
+            android:title="@string/settings_line_numbers_text" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/settings_category_appearance"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="themesPref"
+            android:summary="@string/themes_summary"
+            android:title="@string/themes_text"
+            app:icon="@drawable/ic_baseline_view_carousel_24"/>
+        <Preference
+            android:key="languagesPref"
+            android:summary="@string/language_settings_summary"
+            android:title="@string/language_text"
+            app:icon="@drawable/ic_baseline_translate_24"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/settings_category_other"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="aboutPref"
+            android:summary="@string/about_summary"
+            android:title="@string/about_text"
+            app:icon="@drawable/ic_outline_info_24"/>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,46 +1,54 @@
 package com.onurkol.app.notes.data;
 
 public class NoteData {
-    private String mNoteID;
-    private String mNoteName;
-    private String mNoteText;
-    private int mNoteColor;
-    private String mNotePassword;
+    private String mGetNoteTitle,
+            mGetNoteText,
+            mGetNoteCreateDate,
+            mGetNoteEditDate,
+            mGetNotePassword;
+    private int mGetNoteColor;
 
-    public NoteData(String NoteID, String NoteName, String NoteText, String NotePassword, int NoteColor){
-        this.mNoteID=NoteID;
-        this.mNoteName=NoteName;
-        this.mNoteText=NoteText;
-        this.mNoteColor=NoteColor;
-        this.mNotePassword=NotePassword;
+    public NoteData(String noteTitle,String noteText, String noteCreateDate, String noteEditDate, int noteColor, String notePassword){
+        mGetNoteTitle=noteTitle;
+        mGetNoteText=noteText;
+        mGetNoteCreateDate=noteCreateDate;
+        mGetNoteEditDate=noteEditDate;
+        mGetNoteColor=noteColor;
+        mGetNotePassword=notePassword;
     }
 
-    public String getNoteID(){
-        return mNoteID;
-    }
-    public String getNoteName(){
-        return mNoteName;
+    public String getNoteTitle(){
+        return mGetNoteTitle;
     }
     public String getNoteText(){
-        return mNoteText;
+        return mGetNoteText;
     }
-    public int getNoteColor(){
-        return mNoteColor;
+    public String getNoteCreateDate() {
+        return mGetNoteCreateDate;
     }
-    public String getNotePassword(){
-        return mNotePassword;
+    public String getNoteEditDate() {
+        return mGetNoteEditDate;
+    }
+    public String getNotePassword() {
+        return mGetNotePassword;
+    }
+    public int getNoteColor() {
+        return mGetNoteColor;
     }
 
-    public void setNoteName(String noteName){
-        mNoteName=noteName;
+    public void setNoteTitle(String newNoteTitle){
+        mGetNoteTitle=newNoteTitle;
     }
-    public void setNoteText(String noteText){
-        mNoteText=noteText;
+    public void setNoteText(String newNoteText){
+        mGetNoteText=newNoteText;
     }
-    public void setNoteColor(int noteColor){
-        mNoteColor=noteColor;
+    public void setNoteEditDate(String newNoteEditDate) {
+        mGetNoteEditDate=newNoteEditDate;
     }
-    public void setNotePassword(String notePassword){
-        mNotePassword=notePassword;
+    public void setNotePassword(String newNotePassword) {
+        mGetNotePassword=newNotePassword;
+    }
+    public void setNoteColor(int newNoteColor) {
+        mGetNoteColor=newNoteColor;
     }
 }

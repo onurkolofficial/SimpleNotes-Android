@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/version_text"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="appVersionPref"
+            android:summary="APP_VERSION"
+            android:title="@string/app_version_text"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="androidVersionPref"
+            android:summary="ANDROID_VERSION"
+            android:title="@string/android_version_text"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/contact_text"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="devNamePref"
+            android:summary="Onur KOL"
+            android:title="@string/developer_text"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="devWebPref"
+            android:summary="@string/developer_web_page_summary"
+            android:title="@string/developer_web_page_text"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+</PreferenceScreen>
