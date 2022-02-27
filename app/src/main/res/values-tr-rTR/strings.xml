@@ -71,4 +71,10 @@
     <string name="settings_line_numbers_summary">Satır numaralarını göster.</string>
     <string name="date_info_text">Zaman Bilgisi</string>
     <string name="date_info_summary">Zaman bilgisini göster.</string>
+    <string name="widget_note_edit_select_text">Bir not seç!</string>
+    <string name="no_note_text">Not yok!</string>
+    <string name="set_note_text">Notu Ayarla!</string>
+    <string name="set_text">Ayarla</string>
+    <string name="set_for_password_text">Araç olarak ayarlamak için şifreyi girin.</string>
+    <string name="widget_note_edit_description">Seçtiğiniz notu düzenleyin.</string>
 </resources>

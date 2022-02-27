@@ -18,6 +18,11 @@ public interface AppData {
             DEFAULT_NOTE_LINE_NUMBERS=0,
             DEFAULT_NOTE_DATE_INFO=1;
 
+    String WIDGET_KEY_NOTE_TITLE=".Widget.Data.Note.Title",
+            WIDGET_KEY_NOTE_TEXT=".Widget.Data.Note.Text",
+            WIDGET_KEY_NOTE_COLOR=".Widget.Data.Note.Color",
+            WIDGET_KEY_NOTE_PASSWORD=".Widget.Data.Note.Password";
+
     // Lists
     ArrayList<NoteData> NOTE_LIST=new ArrayList<>();
 }

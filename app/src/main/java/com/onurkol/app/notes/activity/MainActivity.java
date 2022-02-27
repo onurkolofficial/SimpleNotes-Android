@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements AppData {
         });
         super.onStart();
     }
+
     private void popupSnackbarForCompleteUpdate() {
         Snackbar snackbar = Snackbar.make(
                 findViewById(R.id.appMainLayout),

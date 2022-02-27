@@ -71,4 +71,10 @@
     <string name="settings_line_numbers_summary">Show line numbers.</string>
     <string name="date_info_text">Date Info</string>
     <string name="date_info_summary">Show date info.</string>
+    <string name="widget_note_edit_select_text">Select a note!</string>
+    <string name="no_note_text">No note!</string>
+    <string name="set_note_text">Set Note!</string>
+    <string name="set_text">Set</string>
+    <string name="set_for_password_text">Enter a password to set widget.</string>
+    <string name="widget_note_edit_description">Edit the note of your choice.</string>
 </resources>

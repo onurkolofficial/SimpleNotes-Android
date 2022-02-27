@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_dark_mode_24.xml" value="0.182" />
@@ -21,12 +22,15 @@
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_about.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_language.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/activity_settings_theme.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/note_edit_widget.xml" value="0.1" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layout/note_edit_widget_configure.xml" value="0.1" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_note_edit.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_about.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_language.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_theme.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_edit_list_widget.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_list.xml" value="0.22" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_edit_new_note.xml" value="0.16458333333333333" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_lock_unlock_note.xml" value="0.2" />
@@ -38,8 +42,11 @@
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_no_action.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_note_edit.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_settings.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/toolbars/layout/toolbar_widget_note_edit.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/views/layout/layout_no_note.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/views/layout/view_no_note.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/widget_activity/layout/note_edit_widget_configure.xml" value="0.18" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/widgets/layout/note_edit_widget.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/simple-notes/drawable/rounded_corner.xml" value="0.182" />
       </map>
     </option>

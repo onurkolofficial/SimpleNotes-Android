@@ -12,6 +12,25 @@
         android:roundIcon="@drawable/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleNotes">
+        <receiver
+            android:name=".widgets.NoteEditWidget"
+            android:label="@string/edit_note_text"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/note_edit_widget_info" />
+        </receiver>
+        <activity
+            android:name=".activity.widgets.NoteEditWidgetConfigureActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.settings.SettingsLanguageActivity"
             android:exported="false" />
