@@ -50,10 +50,7 @@ public class PopupSetWidgetNote {
         dialogLockUnlockOpenButton.setOnClickListener(view -> {
             notePassword=dialogLockUnlockOpenPassword.getText().toString();
             if(notePassword.equals(editData.getNotePassword()))
-                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(context,
-                        editData.getNoteTitle(),
-                        editData.getNoteText(),
-                        editData.getNoteColor());
+                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(context, position);
             else
                 Alert(context,context.getString(R.string.wrong_password_text));
 

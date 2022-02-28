@@ -96,7 +96,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteData> implements AppData {
         holder.noteLockStatus.setColorFilter(background);
         holder.noteLockUnlockButton.setColorFilter(textColor);
 
-        holder.noteNameText.setText(Limit(currentData.getNoteTitle(),22));
+        holder.noteNameText.setText(Limit(currentData.getNoteTitle(),19));
         holder.createdDateValue.setText(currentData.getNoteCreateDate());
         String editDateText;
         if(currentData.getNoteEditDate()!=null)

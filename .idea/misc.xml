@@ -10,6 +10,7 @@
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_mode_edit_24.xml" value="0.1435" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_playlist_add_24.xml" value="0.182" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1175" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.182" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/drawable/ic_baseline_sync_24.xml" value="0.182" />
@@ -32,6 +33,9 @@
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/activity/layout/activity_settings_theme.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_edit_list_widget.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_list.xml" value="0.22" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_note_list_set_widget.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_widget_scrollable_text.xml" value="0.2" />
+        <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/items/layout/item_widget_text_scroll.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_edit_new_note.xml" value="0.16458333333333333" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/popups/layout/popup_lock_unlock_note.xml" value="0.2" />
         <entry key="..\:/Projelerim/Android/Simple-Notes/app/src/main/res/layouts/preferences/xml/preference_settings.xml" value="0.25" />

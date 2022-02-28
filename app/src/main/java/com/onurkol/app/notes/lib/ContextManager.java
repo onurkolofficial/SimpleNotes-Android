@@ -33,6 +33,10 @@ public class ContextManager {
             instance=new WeakReference<>(new ContextManager(contextStatic.get()));
         return instance.get();
     }
+
+    public static synchronized boolean isContext(){
+        return (contextStatic != null && contextStatic.get() != null);
+    }
     public Context getContext(){
         return contextStatic.get();
     }

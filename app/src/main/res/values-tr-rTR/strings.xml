@@ -77,4 +77,6 @@
     <string name="set_text">Ayarla</string>
     <string name="set_for_password_text">Araç olarak ayarlamak için şifreyi girin.</string>
     <string name="widget_note_edit_description">Seçtiğiniz notu düzenleyin.</string>
+    <string name="refresh_text">Yenile</string>
+    <string name="error_context_again">Yenilemek için tekrar tıklayın.</string>
 </resources>

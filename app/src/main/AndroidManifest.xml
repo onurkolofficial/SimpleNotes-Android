@@ -12,6 +12,8 @@
         android:roundIcon="@drawable/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleNotes">
+        <service android:name=".widgets.noteEditWidget.Service"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
         <receiver
             android:name=".widgets.NoteEditWidget"
             android:label="@string/edit_note_text"

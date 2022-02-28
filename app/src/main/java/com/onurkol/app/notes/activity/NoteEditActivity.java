@@ -6,7 +6,6 @@ import static com.onurkol.app.notes.tools.CharLimiter.Limit;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,7 +48,7 @@ public class NoteEditActivity extends AppCompatActivity implements AppData {
         noteTitle=findViewById(R.id.noteTitle);
         noteText=findViewById(R.id.noteEditText);
 
-        noteTitle.setText(Limit(data.getNoteTitle(),26));
+        noteTitle.setText(Limit(data.getNoteTitle(),18));
         noteText.setText(data.getNoteText());
 
         backButton.setOnClickListener(view -> finish());

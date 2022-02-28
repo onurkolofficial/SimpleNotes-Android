@@ -1,4 +1,4 @@
-package com.onurkol.app.notes.adapters.widgets;
+package com.onurkol.app.notes.adapters;
 
 import static com.onurkol.app.notes.tools.CharLimiter.Limit;
 
@@ -24,13 +24,13 @@ import com.onurkol.app.notes.popups.PopupSetWidgetNote;
 
 import java.util.List;
 
-public class NoteEditWidgetAdapter extends ArrayAdapter<NoteData> implements AppData {
+public class NoteListSelectToSetAdapter extends ArrayAdapter<NoteData> implements AppData {
     private final LayoutInflater inflater;
     private ViewHolder holder;
     private static List<NoteData> noteData;
 
 
-    public NoteEditWidgetAdapter(Context context, ListView NoteListView, List<NoteData> NoteData) {
+    public NoteListSelectToSetAdapter(Context context, ListView NoteListView, List<NoteData> NoteData) {
         super(context, 0, NoteData);
         noteData=NoteData;
         inflater=LayoutInflater.from(context);
@@ -40,7 +40,7 @@ public class NoteEditWidgetAdapter extends ArrayAdapter<NoteData> implements App
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView==null) {
-            convertView = inflater.inflate(R.layout.item_note_edit_list_widget, null);
+            convertView = inflater.inflate(R.layout.item_note_list_set_widget, null);
             holder = new ViewHolder();
             holder.noteNameWidgetText = convertView.findViewById(R.id.noteNameWidgetText);
             holder.noteSetWidgetButton = convertView.findViewById(R.id.noteSetWidgetButton);
@@ -56,7 +56,7 @@ public class NoteEditWidgetAdapter extends ArrayAdapter<NoteData> implements App
         int textColor,
                 background=currentData.getNoteColor();
 
-        if(background== ContextCompat.getColor(getContext(),R.color.cardColorWhite) ||
+        if(background==ContextCompat.getColor(getContext(),R.color.cardColorWhite) ||
                 background==ContextCompat.getColor(getContext(),R.color.cardColorYellow) ||
                 background==ContextCompat.getColor(getContext(),R.color.cardColorLime) ||
                 background==ContextCompat.getColor(getContext(),R.color.cardColorAmber))
@@ -68,7 +68,7 @@ public class NoteEditWidgetAdapter extends ArrayAdapter<NoteData> implements App
         holder.noteLockStatus.setColorFilter(background);
         holder.noteNameWidgetText.setTextColor(textColor);
 
-        holder.noteNameWidgetText.setText(Limit(currentData.getNoteTitle(),30));
+        holder.noteNameWidgetText.setText(Limit(currentData.getNoteTitle(),24));
 
         String notePassword=currentData.getNotePassword();
         if(notePassword==null)
@@ -78,10 +78,7 @@ public class NoteEditWidgetAdapter extends ArrayAdapter<NoteData> implements App
 
         holder.noteSetWidgetButton.setOnClickListener(view -> {
             if(currentData.getNotePassword()==null)
-                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(getContext(),
-                        currentData.getNoteTitle(),
-                        currentData.getNoteText(),
-                        currentData.getNoteColor());
+                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(getContext(), position);
             else
                 PopupSetWidgetNote.Show(position);
         });

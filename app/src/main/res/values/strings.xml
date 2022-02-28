@@ -77,4 +77,6 @@
     <string name="set_text">Set</string>
     <string name="set_for_password_text">Enter a password to set widget.</string>
     <string name="widget_note_edit_description">Edit the note of your choice.</string>
+    <string name="refresh_text">Refresh</string>
+    <string name="error_context_again">Click again to refresh.</string>
 </resources>
