@@ -1,9 +1,12 @@
 package com.onurkol.app.notes.activity.widgets;
 
+import static com.onurkol.app.notes.lib.AppPreferenceManager.INTEGER_NULL;
+
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,6 +27,9 @@ import com.onurkol.app.notes.databinding.NoteEditWidgetConfigureBinding;
  * The configuration screen for the {@link NoteEditWidget NoteEditWidget} AppWidget.
  */
 public class NoteEditWidgetConfigureActivity extends Activity implements AppData {
+    private static final String PREFS_NAME = "com.onurkol.app.notes.widgets.NoteEditWidget";
+    private static final String PREF_PREFIX_KEY = "appwidget_";
+
     public static int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
     ListView noteListView;
@@ -37,16 +43,34 @@ public class NoteEditWidgetConfigureActivity extends Activity implements AppData
         super();
     }
 
+    public static void saveWidgetNoteIndex(Context context, int appWidgetId, int noteIndex){
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.putInt(PREF_PREFIX_KEY + appWidgetId + WIDGET_KEY_NOTE_INDEX, noteIndex);
+        prefs.apply();
+    }
+    public static int loadWidgetDataInt(Context context, int appWidgetId, String Name) {
+        String WIDGET_DATA_KEY=(Name==null ? WIDGET_KEY_NOTE_TEXT : Name);
+
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        return prefs.getInt(PREF_PREFIX_KEY + appWidgetId + WIDGET_DATA_KEY, INTEGER_NULL);
+    }
+    // Data's getting application default preferences from 'AppPreferenceManager'
     public static void saveWidgetDataInt(String Name, int Value) {
         AppPreferenceManager.getInstance().setPreference(Name, Value);
     }
-
     public static int loadWidgetDataInt(String Name) {
         return AppPreferenceManager.getInstance().getInt(Name);
     }
+    // Data's removing template preferences from 'context'
+    public static void deleteWidgetData(Context context, int appWidgetId, String Name) {
+        String WIDGET_DATA_KEY=(Name==null ? WIDGET_KEY_NOTE_TEXT : Name);
+
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        prefs.edit().remove(PREF_PREFIX_KEY + appWidgetId + WIDGET_DATA_KEY).apply();
+    }
 
     public static void acceptWidgetDataOnClick(Context context, int Index){
-        NoteEditWidgetConfigureActivity.saveWidgetDataInt(WIDGET_KEY_NOTE_INDEX, Index);
+        saveWidgetNoteIndex(context, mAppWidgetId, Index);
 
         // It is the responsibility of the configuration activity to update the app widget
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);

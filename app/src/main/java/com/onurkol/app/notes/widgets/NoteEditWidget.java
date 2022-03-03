@@ -11,9 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.onurkol.app.notes.R;
 import com.onurkol.app.notes.activity.NoteEditActivity;
@@ -28,10 +26,8 @@ import com.onurkol.app.notes.widgets.noteEditWidget.Service;
  * App Widget Configuration implemented in {@link NoteEditWidgetConfigureActivity NoteEditWidgetConfigureActivity}
  */
 public class NoteEditWidget extends AppWidgetProvider implements AppData {
-    public static final String EXTRA_ITEM = "com.onurkol.app.notes.widgets.NoteEditWidget.EXTRA_ITEM";
-
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
-        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(WIDGET_KEY_NOTE_INDEX);
+        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, AppData.WIDGET_KEY_NOTE_INDEX);
 
         if(widgetNoteIndex!=INTEGER_NULL){
             String updatedWidgetTitle = NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteTitle();
@@ -59,7 +55,6 @@ public class NoteEditWidget extends AppWidgetProvider implements AppData {
             Intent noteEditWidgetService = new Intent(context, Service.class);
             noteEditWidgetService.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             noteEditWidgetService.setData(Uri.parse(noteEditWidgetService.toUri(Intent.URI_INTENT_SCHEME)));
-
             views.setRemoteAdapter(R.id.scrollableTextListView, noteEditWidgetService);
 
             Intent activityIntent = new Intent(context, NoteEditActivity.class);
@@ -81,7 +76,6 @@ public class NoteEditWidget extends AppWidgetProvider implements AppData {
             PendingIntent pendingSync = PendingIntent.getBroadcast(context, 0, intentSync, PendingIntent.FLAG_UPDATE_CURRENT);
             views.setOnClickPendingIntent(R.id.refreshNoteWidgetButton, pendingSync);
 
-            //if (intentSync.getAction().equals(AppWidgetManager.ACTION_APPWIDGET_UPDATE))
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.scrollableTextListView);
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -105,21 +99,19 @@ public class NoteEditWidget extends AppWidgetProvider implements AppData {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        if(!ContextManager.isContext()) {
-            ContextManager.Build(context);
-            Toast.makeText(context, context.getString(R.string.error_context_again), Toast.LENGTH_SHORT).show();
-        }
-        else{
-            // There may be multiple widgets active, so update all of them
-            for (int appWidgetId : appWidgetIds) {
-                updateAppWidget(context, appWidgetManager, appWidgetId);
-            }
+        ContextManager.Build(context);
+        // There may be multiple widgets active, so update all of them
+        for (int appWidgetId : appWidgetIds) {
+            updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
+        for (int appWidgetId : appWidgetIds) {
+            NoteEditWidgetConfigureActivity.deleteWidgetData(context, appWidgetId, AppData.WIDGET_KEY_NOTE_INDEX);
+        }
     }
 
     @Override

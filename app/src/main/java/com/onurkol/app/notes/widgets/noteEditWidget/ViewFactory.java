@@ -42,7 +42,7 @@ public class ViewFactory implements RemoteViewsService.RemoteViewsFactory, AppDa
     public RemoteViews getViewAt(int position) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.item_widget_scrollable_text);
 
-        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(WIDGET_KEY_NOTE_INDEX);
+        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, WIDGET_KEY_NOTE_INDEX);
 
         String updatedWidgetText=NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteText();
         int updatedWidgetColor=NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteColor();

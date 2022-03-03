@@ -10,7 +10,7 @@ public interface AppData {
             KEY_NOTE_LINE_NUMBERS="Data.App.Settings.LineNumbers",
             KEY_NOTE_DATE_INFO="Data.App.Settings.DateInfo",
             KEY_NOTE_LIST="Data.App.Note.List",
-            KEY_EXTRA_NOTE_POSITION="Data.App.Note.EditPosition";
+            KEY_EXTRA_NOTE_POSITION="Data.App.Note.IndexFromWidgetExtra";
 
     // Default Values
     int DEFAULT_APP_THEME=0,
