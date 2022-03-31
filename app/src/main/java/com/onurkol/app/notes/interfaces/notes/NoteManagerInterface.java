@@ -14,4 +14,6 @@ public interface NoteManagerInterface {
     String getNoteListJson();
 
     void syncNoteListDataOnPreference();
+
+    void fixedAutoDataInNotes();
 }

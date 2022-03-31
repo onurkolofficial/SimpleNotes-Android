@@ -16,6 +16,7 @@ import android.widget.RemoteViews;
 import com.onurkol.app.notes.R;
 import com.onurkol.app.notes.activity.NoteEditActivity;
 import com.onurkol.app.notes.activity.widgets.NoteEditWidgetConfigureActivity;
+import com.onurkol.app.notes.data.NoteData;
 import com.onurkol.app.notes.interfaces.AppData;
 import com.onurkol.app.notes.lib.ContextManager;
 import com.onurkol.app.notes.lib.notes.NoteManager;
@@ -27,12 +28,21 @@ import com.onurkol.app.notes.widgets.noteEditWidget.Service;
  */
 public class NoteEditWidget extends AppWidgetProvider implements AppData {
     public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
-        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, AppData.WIDGET_KEY_NOTE_INDEX);
+        int widgetNoteId=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, WIDGET_KEY_NOTE_ID);
 
-        if(widgetNoteIndex!=INTEGER_NULL){
-            String updatedWidgetTitle = NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteTitle();
-            int updatedWidgetColor = NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteColor();
+        if(widgetNoteId!=INTEGER_NULL){
+            String updatedWidgetTitle=null;
+            int updatedWidgetColor=0;
 
+            int position=0;
+            for(NoteData note : NoteManager.getManager().getNoteList()) {
+                if(note.getNoteId()==widgetNoteId){
+                    updatedWidgetTitle = NoteManager.getManager().getNoteList().get(position).getNoteTitle();
+                    updatedWidgetColor = NoteManager.getManager().getNoteList().get(position).getNoteColor();
+                    break;
+                }
+                position++;
+            }
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.note_edit_widget);
             views.setTextViewText(R.id.noteWidgetTitleTextView, Limit(updatedWidgetTitle, 14));
@@ -61,7 +71,7 @@ public class NoteEditWidget extends AppWidgetProvider implements AppData {
             // Set the action for the intent.
             // When the user touches a particular view.
             activityIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-            activityIntent.putExtra(KEY_EXTRA_NOTE_POSITION, widgetNoteIndex);
+            activityIntent.putExtra(KEY_EXTRA_NOTE_ID, widgetNoteId);
             activityIntent.setData(Uri.parse(activityIntent.toUri(Intent.URI_INTENT_SCHEME)));
             PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId, activityIntent,
                     PendingIntent.FLAG_IMMUTABLE);
@@ -110,7 +120,7 @@ public class NoteEditWidget extends AppWidgetProvider implements AppData {
     public void onDeleted(Context context, int[] appWidgetIds) {
         // When the user deletes the widget, delete the preference associated with it.
         for (int appWidgetId : appWidgetIds) {
-            NoteEditWidgetConfigureActivity.deleteWidgetData(context, appWidgetId, AppData.WIDGET_KEY_NOTE_INDEX);
+            NoteEditWidgetConfigureActivity.deleteWidgetData(context, appWidgetId, AppData.WIDGET_KEY_NOTE_ID);
         }
     }
 

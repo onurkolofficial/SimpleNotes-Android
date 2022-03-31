@@ -10,7 +10,8 @@ public interface AppData {
             KEY_NOTE_LINE_NUMBERS="Data.App.Settings.LineNumbers",
             KEY_NOTE_DATE_INFO="Data.App.Settings.DateInfo",
             KEY_NOTE_LIST="Data.App.Note.List",
-            KEY_EXTRA_NOTE_POSITION="Data.App.Note.IndexFromWidgetExtra";
+            KEY_EXTRA_NOTE_ID="Data.App.Note.IdFromWidgetExtra",
+            KEY_EXTRA_NOTE_INDEX="Data.App.Note.IndexFromWidgetExtra";
 
     // Default Values
     int DEFAULT_APP_THEME=0,
@@ -22,7 +23,8 @@ public interface AppData {
             WIDGET_KEY_NOTE_TEXT=".Widget.Data.Note.Text",
             WIDGET_KEY_NOTE_COLOR=".Widget.Data.Note.Color",
             WIDGET_KEY_NOTE_PASSWORD=".Widget.Data.Note.Password",
-            WIDGET_KEY_NOTE_INDEX=".Widget.Data.Note.Index";
+            WIDGET_KEY_NOTE_INDEX=".Widget.Data.Note.Index",
+            WIDGET_KEY_NOTE_ID=".Widget.Data.Note.Id";
 
     // Lists
     ArrayList<NoteData> NOTE_LIST=new ArrayList<>();

@@ -7,7 +7,7 @@ public class RandomGenerator {
     private static final String dataRandInteger = "0123456789";
     private static final String dataRandAll = dataRandInteger+dataRandString+"|!£$%&/=@#";
 
-    private static Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
     public static String randomString() {
         StringBuilder sb = new StringBuilder(5);

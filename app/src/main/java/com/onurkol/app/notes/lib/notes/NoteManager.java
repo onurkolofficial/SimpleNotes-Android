@@ -8,6 +8,7 @@ import com.onurkol.app.notes.interfaces.notes.NoteManagerInterface;
 import com.onurkol.app.notes.lib.AppPreferenceManager;
 import com.onurkol.app.notes.tools.DateManager;
 import com.onurkol.app.notes.tools.ListToJson;
+import com.onurkol.app.notes.tools.RandomGenerator;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ public class NoteManager implements NoteManagerInterface, AppData {
         if(NOTE_LIST.size()<=0)
             syncNoteListDataOnPreference();
 
+        int NoteID=RandomGenerator.randomInteger(8);
         String noteCreateDate=DateManager.getDateTime();
-        NOTE_LIST.add(0,new NoteData(NoteTitle,NoteText,noteCreateDate,NoteEditDate,NoteColor,NotePassword));
+        NOTE_LIST.add(0,new NoteData(NoteID,NoteTitle,NoteText,noteCreateDate,NoteEditDate,NoteColor,NotePassword));
         saveNoteListInPreference(NOTE_LIST);
     }
 
@@ -83,5 +85,24 @@ public class NoteManager implements NoteManagerInterface, AppData {
     public void syncNoteListDataOnPreference() {
         NOTE_LIST.clear();
         NOTE_LIST.addAll(getNoteList());
+    }
+
+    @Override
+    public void fixedAutoDataInNotes() {
+        if(NOTE_LIST.get(0).getNoteId()==0){
+            int position=0;
+            for(NoteData note : NOTE_LIST) {
+                if(note.getNoteId()==0){
+                    // Set note id for those without id.
+                    int NoteID=RandomGenerator.randomInteger(8);
+                    // Save
+                    NOTE_LIST.get(position).setNoteId(NoteID);
+                    saveNoteListInPreference(NOTE_LIST);
+                }
+                position++;
+            }
+        }
+        // Sync Data
+        syncNoteListDataOnPreference();
     }
 }

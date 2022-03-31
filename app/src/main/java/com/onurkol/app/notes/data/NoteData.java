@@ -6,9 +6,11 @@ public class NoteData {
             mGetNoteCreateDate,
             mGetNoteEditDate,
             mGetNotePassword;
-    private int mGetNoteColor;
+    private int mGetNoteId,
+            mGetNoteColor;
 
-    public NoteData(String noteTitle,String noteText, String noteCreateDate, String noteEditDate, int noteColor, String notePassword){
+    public NoteData(int noteId, String noteTitle,String noteText, String noteCreateDate, String noteEditDate, int noteColor, String notePassword){
+        mGetNoteId=noteId;
         mGetNoteTitle=noteTitle;
         mGetNoteText=noteText;
         mGetNoteCreateDate=noteCreateDate;
@@ -17,6 +19,9 @@ public class NoteData {
         mGetNotePassword=notePassword;
     }
 
+    public int getNoteId() {
+        return mGetNoteId;
+    }
     public String getNoteTitle(){
         return mGetNoteTitle;
     }
@@ -36,6 +41,9 @@ public class NoteData {
         return mGetNoteColor;
     }
 
+    public void setNoteId(int newNoteId){
+        mGetNoteId=newNoteId;
+    }
     public void setNoteTitle(String newNoteTitle){
         mGetNoteTitle=newNoteTitle;
     }

@@ -43,9 +43,11 @@ public class NoteEditWidgetConfigureActivity extends Activity implements AppData
         super();
     }
 
-    public static void saveWidgetNoteIndex(Context context, int appWidgetId, int noteIndex){
+    public static void saveWidgetDataInt(Context context, int appWidgetId, String Name, int Value){
+        String WIDGET_DATA_KEY=(Name==null ? WIDGET_KEY_NOTE_TEXT : Name);
+
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putInt(PREF_PREFIX_KEY + appWidgetId + WIDGET_KEY_NOTE_INDEX, noteIndex);
+        prefs.putInt(PREF_PREFIX_KEY + appWidgetId + WIDGET_DATA_KEY, Value);
         prefs.apply();
     }
     public static int loadWidgetDataInt(Context context, int appWidgetId, String Name) {
@@ -55,10 +57,10 @@ public class NoteEditWidgetConfigureActivity extends Activity implements AppData
         return prefs.getInt(PREF_PREFIX_KEY + appWidgetId + WIDGET_DATA_KEY, INTEGER_NULL);
     }
     // Data's getting application default preferences from 'AppPreferenceManager'
-    public static void saveWidgetDataInt(String Name, int Value) {
+    public static void saveAppDataWidgetDataInt(String Name, int Value) {
         AppPreferenceManager.getInstance().setPreference(Name, Value);
     }
-    public static int loadWidgetDataInt(String Name) {
+    public static int loadAppDataWidgetDataInt(String Name) {
         return AppPreferenceManager.getInstance().getInt(Name);
     }
     // Data's removing template preferences from 'context'
@@ -69,8 +71,8 @@ public class NoteEditWidgetConfigureActivity extends Activity implements AppData
         prefs.edit().remove(PREF_PREFIX_KEY + appWidgetId + WIDGET_DATA_KEY).apply();
     }
 
-    public static void acceptWidgetDataOnClick(Context context, int Index){
-        saveWidgetNoteIndex(context, mAppWidgetId, Index);
+    public static void acceptWidgetDataOnClick(Context context, int Id){
+        saveWidgetDataInt(context, mAppWidgetId, WIDGET_KEY_NOTE_ID, Id);
 
         // It is the responsibility of the configuration activity to update the app widget
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);

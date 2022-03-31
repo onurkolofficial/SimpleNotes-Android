@@ -78,9 +78,9 @@ public class NoteListSelectToSetAdapter extends ArrayAdapter<NoteData> implement
 
         holder.noteSetWidgetButton.setOnClickListener(view -> {
             if(currentData.getNotePassword()==null)
-                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(getContext(), position);
+                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(getContext(), currentData.getNoteId());
             else
-                PopupSetWidgetNote.Show(position);
+                PopupSetWidgetNote.Show(position, currentData.getNoteId());
         });
         return convertView;
     }

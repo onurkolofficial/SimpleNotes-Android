@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements AppData {
         if(noteManager.getNoteList().size()>0) {
             noNoteLayout.setVisibility(View.GONE);
             noteManager.syncNoteListDataOnPreference();
+
+            // Fixing problematic data.
+            noteManager.fixedAutoDataInNotes();
         }
 
         // Ads (StartApp)
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements AppData {
 
     public static void startNoteEditActivity(Context context, int position){
         Intent editNoteIntent=new Intent(context, NoteEditActivity.class);
-        editNoteIntent.putExtra(KEY_EXTRA_NOTE_POSITION, position);
+        editNoteIntent.putExtra(KEY_EXTRA_NOTE_INDEX, position);
         context.startActivity(editNoteIntent);
     }
 

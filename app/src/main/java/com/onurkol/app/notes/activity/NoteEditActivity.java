@@ -38,10 +38,29 @@ public class NoteEditActivity extends AppCompatActivity implements AppData {
         setContentView(R.layout.activity_note_edit);
 
         noteManager=NoteManager.getManager();
+        NoteData data=null;
+        int dataPosition=0;
 
-        int dataPosition=getIntent().getIntExtra(KEY_EXTRA_NOTE_POSITION,INTEGER_NULL);
         ArrayList<NoteData> noteList=noteManager.getNoteList();
-        NoteData data=noteList.get(dataPosition);
+
+        int getIntentNoteId=getIntent().getIntExtra(KEY_EXTRA_NOTE_ID,INTEGER_NULL);
+        if(getIntentNoteId==INTEGER_NULL){
+            dataPosition = getIntent().getIntExtra(KEY_EXTRA_NOTE_INDEX, INTEGER_NULL);
+            data = noteManager.getNoteList().get(dataPosition);
+        }
+        else{
+            int position=0;
+            for(NoteData note : NoteManager.getManager().getNoteList()) {
+                if(note.getNoteId()==getIntentNoteId){
+                    dataPosition = position;
+                    data = noteManager.getNoteList().get(position);
+                    break;
+                }
+                position++;
+            }
+        }
+        final NoteData finalData = data;
+        final int finalDataPosition = dataPosition;
 
         backButton=findViewById(R.id.backButton);
         saveButton=findViewById(R.id.saveNoteButton);
@@ -56,10 +75,10 @@ public class NoteEditActivity extends AppCompatActivity implements AppData {
             String getNewText=noteText.getText().toString();
             String getEditDate=DateManager.getDateTime();
 
-            data.setNoteText(getNewText);
-            data.setNoteEditDate(getEditDate);
+            finalData.setNoteText(getNewText);
+            finalData.setNoteEditDate(getEditDate);
 
-            noteList.set(dataPosition,data);
+            noteList.set(finalDataPosition, finalData);
 
             noteManager.saveNoteListInPreference(noteList);
             noteManager.syncNoteListDataOnPreference();

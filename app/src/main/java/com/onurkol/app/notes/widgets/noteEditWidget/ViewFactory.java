@@ -8,6 +8,7 @@ import android.widget.RemoteViewsService;
 
 import com.onurkol.app.notes.R;
 import com.onurkol.app.notes.activity.widgets.NoteEditWidgetConfigureActivity;
+import com.onurkol.app.notes.data.NoteData;
 import com.onurkol.app.notes.interfaces.AppData;
 import com.onurkol.app.notes.lib.notes.NoteManager;
 
@@ -42,10 +43,21 @@ public class ViewFactory implements RemoteViewsService.RemoteViewsFactory, AppDa
     public RemoteViews getViewAt(int position) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.item_widget_scrollable_text);
 
-        int widgetNoteIndex=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, WIDGET_KEY_NOTE_INDEX);
+        int widgetNoteId=NoteEditWidgetConfigureActivity.loadWidgetDataInt(context, appWidgetId, WIDGET_KEY_NOTE_ID);
 
-        String updatedWidgetText=NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteText();
-        int updatedWidgetColor=NoteManager.getManager().getNoteList().get(widgetNoteIndex).getNoteColor();
+        String updatedWidgetText=null;
+        int updatedWidgetColor=0;
+
+        int index=0;
+        for(NoteData note : NoteManager.getManager().getNoteList()) {
+            if(note.getNoteId()==widgetNoteId){
+                updatedWidgetText = NoteManager.getManager().getNoteList().get(index).getNoteText();
+                updatedWidgetColor = NoteManager.getManager().getNoteList().get(index).getNoteColor();
+                break;
+            }
+            index++;
+        }
+
         int widgetTextColor;
         if(updatedWidgetColor==context.getColor(R.color.cardColorWhite) ||
                 updatedWidgetColor==context.getColor(R.color.cardColorYellow) ||

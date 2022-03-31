@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class PopupSetWidgetNote {
     static String notePassword;
-    public static void Show(int position) {
-        Context context= ContextManager.getManager().getContext();
+    public static void Show(int position, int noteId) {
+        Context context=ContextManager.getManager().getContext();
         Activity activity=(Activity)context;
 
         EditText dialogLockUnlockOpenPassword;
@@ -33,7 +33,7 @@ public class PopupSetWidgetNote {
         openLockedNoteDialog.setContentView(R.layout.popup_lock_unlock_note);
         openLockedNoteDialog.getWindow().setLayout(MATCH_PARENT,WRAP_CONTENT);
 
-        ArrayList<NoteData> noteList= NoteManager.getManager().getNoteList();
+        ArrayList<NoteData> noteList=NoteManager.getManager().getNoteList();
         NoteData editData=noteList.get(position);
 
         dialogLockUnlockOpenPassword = openLockedNoteDialog.findViewById(R.id.dialogLockUnlockOpenPassword);
@@ -50,7 +50,7 @@ public class PopupSetWidgetNote {
         dialogLockUnlockOpenButton.setOnClickListener(view -> {
             notePassword=dialogLockUnlockOpenPassword.getText().toString();
             if(notePassword.equals(editData.getNotePassword()))
-                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(context, position);
+                NoteEditWidgetConfigureActivity.acceptWidgetDataOnClick(context, editData.getNoteId());
             else
                 Alert(context,context.getString(R.string.wrong_password_text));
 
