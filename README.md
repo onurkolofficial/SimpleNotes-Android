@@ -1,4 +1,3 @@
-# SimpleNotes-Android
-Note Application for Android
+# DEPRECATED SimpleNotes-Android
 
-Application: https://play.google.com/store/apps/details?id=com.onurkol.app.notes
+<h3>New Version is https://github.com/onurkolofficial/OK-Notes-App</h3>
